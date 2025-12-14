@@ -85,6 +85,8 @@ Nach dem Kopieren des Starter-Kits:
 | `/memory` | Kontext aktualisieren | Memory-Dateien |
 | `/fix` | Bug beheben | - |
 | `/ende` | Phase abschliessen | - |
+| `/idea` | Gedanke im Backlog speichern | `backlog.md` Eintrag |
+| `/issue` | GitHub Issues verwalten | GitHub Issue |
 
 ### Was produziert jeder Command?
 
@@ -128,7 +130,8 @@ dein-projekt/
 │   │   ├── projekt.md    # Vision, Tech-Stack
 │   │   ├── kontext.md    # Aktuelle Tasks
 │   │   ├── fortschritt.md # Was wurde gebaut
-│   │   └── entscheidungen.md # ADRs
+│   │   ├── entscheidungen.md # ADRs
+│   │   └── backlog.md    # Interne Issue-Liste
 │   │
 │   └── commands/         # Slash-Commands
 │

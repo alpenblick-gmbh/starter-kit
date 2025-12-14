@@ -41,6 +41,8 @@ Dieses Projekt nutzt einen **3-Phasen-Workflow**:
 | `/memory` | Memory-Bank aktualisieren | Nach Feature-Abschluss |
 | `/fix` | Bug beheben | Bei Bugs |
 | `/ende` | Phase abschliessen | Am Ende einer Phase |
+| `/idea` | Gedanke/Idee festhalten | Jederzeit |
+| `/issue` | GitHub Issues verwalten | Bei Bug-Reports, Features |
 
 ---
 

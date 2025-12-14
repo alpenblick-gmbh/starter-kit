@@ -1,0 +1,6 @@
+# Phase-Outputs werden hier gespeichert
+# Diese Dateien werden zur Laufzeit erstellt:
+# - idee.md (von /start)
+# - plan.md (von /plan)
+# - zusammenfassung.md (von /dev)
+# - review-report.md (von /review)

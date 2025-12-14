@@ -1,6 +1,21 @@
 # Plan: User-Login mit Google OAuth
 
 > Beispiel-Output von `/plan` - So sieht ein fertiger Plan aus.
+>
+> **Hinweis:** Dieser Plan hat 5 Tasks - ideal fuer eine /dev Session (max 6 Tasks).
+> Bei >6 Tasks wuerde der Plan in Phasen aufgeteilt.
+
+## Was wird gebaut
+
+**Problem:** Neue Nutzer muessen sich ein weiteres Passwort merken, was die Registrierung verlangsamt.
+**Loesung:** Login mit bestehendem Google-Account ermoeglichen.
+**Nutzer:** Neue Besucher, die schnell starten wollen.
+
+## Anforderungen
+
+- [ ] User kann sich mit Google anmelden
+- [ ] Bestehende Email/Passwort-Anmeldung bleibt erhalten
+- [ ] Fehler werden verstaendlich angezeigt
 
 ## User Story
 

@@ -103,11 +103,43 @@ cp .env.example .env.local
 
 Erklaere welche Variablen relevant sind basierend auf Stack.
 
+### Validierung
+
+Nach dem Setup automatisch pruefen:
+
+| Kategorie | Pruefung |
+|-----------|----------|
+| **Dateien** | CLAUDE.md, package.json, tsconfig.json vorhanden? |
+| **Memory** | projekt.md und kontext.md ausgefuellt (keine Platzhalter)? |
+| **Environment** | .env.local existiert? |
+| **Dependencies** | `npm install` erfolgreich? |
+| **Build** | `npm run build` erfolgreich? |
+
+Zeige Ergebnis als Tabelle:
+
+```markdown
+## Setup-Validierung
+
+| Pruefung | Status |
+|----------|--------|
+| CLAUDE.md | OK |
+| projekt.md | OK |
+| kontext.md | OK |
+| .env.local | OK |
+| npm install | OK |
+| npm run build | OK |
+
+Setup erfolgreich! Naechster Schritt: `/plan`
+```
+
+Bei Fehlern: Zeige was fehlt und wie es behoben werden kann.
+
 ### Abschluss
 
 Zeige:
 1. Was wurde konfiguriert
-2. Naechster Schritt: `/check` dann `/start`
+2. Validierungs-Ergebnis
+3. Naechster Schritt: `/plan`
 
 ## Anti-Patterns (NICHT machen)
 

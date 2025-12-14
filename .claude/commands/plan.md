@@ -1,49 +1,83 @@
 ---
-description: Feature planen - Erstelle Stories und Tasks mit Akzeptanzkriterien
+description: Feature planen - Von der Idee zum umsetzbaren Plan
 ---
 # Planungsphase
 
-Du bist jetzt in der **Planungsphase**. Dein Ziel ist ein klarer, umsetzbarer Plan.
+Du bist jetzt in der **Planungsphase**. Dein Ziel: Von der Idee zum klaren, umsetzbaren Plan.
 
 ## Vorbereitung
 
 - !`rm -f .agent/phase/plan.md`
-- Lies `@.agent/phase/idee.md` falls vorhanden
+- Lies `@.agent/phase/plan.md` falls vorhanden (Fortsetzung)
 
 ## Deine Rolle: Zuhoerer und Projekt-Manager
 
-**WICHTIG:** Auch hier gilt Input-First. Der Entwickler hat vielleicht schon Vorstellungen zur Umsetzung.
+**WICHTIG:** Input-First. Erst verstehen was der Entwickler will, dann planen.
 
-## Phase 1: Kontext pruefen und zuhoeren
+---
 
-### Wenn idee.md existiert:
+## Teil 1: Feature verstehen (Requirements)
 
-```
-"Ich habe die Idee aus /start gelesen:
-[Kurze Zusammenfassung]
+### Schritt 1: Zuhoeren
 
-Hast du schon Vorstellungen wie das technisch
-umgesetzt werden soll? Oder soll ich einen
-Vorschlag machen?"
-```
-
-### Wenn keine idee.md:
+Starte mit einer offenen Einladung:
 
 ```
-"Ich sehe keine dokumentierte Idee von /start.
+"Was moechtest du bauen?
 
-Was moechtest du planen? Erzaehl mir vom Feature
-und ob du schon Vorstellungen zur Umsetzung hast."
+Erzaehl mir von der Idee - das Problem, die Loesung,
+wer es nutzen soll. So viel oder wenig wie du magst."
 ```
 
-**Dann: Hoere zu.** Vielleicht hat der Entwickler schon konkrete Ideen.
+**Dann: Hoere zu.** Unterbrich nicht.
 
-## Phase 2: Technischen Ansatz klaeren
+### Schritt 2: Zusammenfassen
+
+Nach dem Input des Entwicklers:
+
+```markdown
+## Was ich verstanden habe
+
+**Feature:** [Name/Arbeitstitel]
+**Problem:** [Was wird geloest?]
+**Loesung:** [Wie wird es geloest?]
+**Nutzer:** [Wer profitiert?]
+
+**Kern-Anforderungen:**
+- [ ] [Anforderung 1]
+- [ ] [Anforderung 2]
+- [ ] [Anforderung 3]
+
+**Erfolgskriterien:**
+- [Woran erkennt man dass es funktioniert?]
+
+**Noch unklar:**
+- [Frage 1]
+- [Frage 2]
+```
+
+Frage: "Habe ich das richtig verstanden?"
+
+### Schritt 3: Klaeren
+
+Frage NUR nach was wirklich fehlt. Typische Luecken:
+
+| Thema | Frage nur wenn unklar |
+|-------|----------------------|
+| Scope | "Was gehoert NICHT dazu?" |
+| Edge Cases | "Was passiert wenn...?" |
+| Abhaengigkeiten | "Braucht das andere Features?" |
+
+---
+
+## Teil 2: Technische Planung
+
+### Schritt 4: Technischen Ansatz klaeren
 
 Falls der Entwickler keine Praeferenzen hat, schlage vor:
 
 ```markdown
-## Mein Vorschlag
+## Technischer Vorschlag
 
 **Komponenten:**
 - [Komponente 1] - [Warum]
@@ -58,12 +92,9 @@ Falls der Entwickler keine Praeferenzen hat, schlage vor:
 Passt das so? Oder hast du andere Vorstellungen?
 ```
 
-Falls der Entwickler Praeferenzen hat:
-- Hoere zu
-- Frage nach wenn etwas technisch problematisch waere
-- Respektiere seine Entscheidungen
+Falls der Entwickler Praeferenzen hat: Respektiere sie.
 
-## Phase 3: Tasks strukturieren
+### Schritt 5: Tasks strukturieren
 
 Zerlege das Feature in konkrete Tasks:
 
@@ -72,15 +103,32 @@ Zerlege das Feature in konkrete Tasks:
 
 ### 1. [Task-Name]
 - [Was wird gemacht]
-- Geschaetzte Komplexitaet: niedrig/mittel/hoch
+- Komplexitaet: niedrig/mittel/hoch
 
 ### 2. [Task-Name]
 - [Was wird gemacht]
 
-Passt diese Aufteilung? Zu grob? Zu fein?
+Passt diese Aufteilung?
 ```
 
-## Phase 4: Sicherheits-Check (95% Regel)
+### Schritt 6: Groessen-Check
+
+**Falls mehr als 6 Tasks:** Plan ist zu gross fuer eine Session.
+
+```
+"Dieser Plan hat [X] Tasks - das ist zu viel fuer eine /dev Session.
+
+Vorgeschlagene Aufteilung:
+- **Phase 1:** [Tasks 1-3] - [Beschreibung, z.B. "Grundlagen"]
+- **Phase 2:** [Tasks 4-6] - [Beschreibung, z.B. "UI"]
+- **Phase 3:** [Tasks 7-X] - [Beschreibung, z.B. "Tests"]
+
+Welche Phase soll ich zuerst detailliert planen?"
+```
+
+Nach Auswahl: Nur die gewaehlte Phase detailliert planen, andere Phasen als Ueberblick.
+
+### Schritt 7: Sicherheits-Check (95% Regel)
 
 Bevor du den Plan schreibst:
 
@@ -88,24 +136,38 @@ Bevor du den Plan schreibst:
 "Bevor ich den Plan dokumentiere:
 
 Feature: [Name]
+Problem: [1 Satz]
 Ansatz: [Technischer Ansatz in 1-2 Saetzen]
-Tasks: [Anzahl] Aufgaben
-Geschaetzte Komplexitaet: [niedrig/mittel/hoch]
+Tasks: [Anzahl] Aufgaben (Phase 1 von X)
+Komplexitaet: [niedrig/mittel/hoch]
 
 Bin ich bei 95%? Fehlt noch etwas?"
 ```
 
 **Warte auf explizite Bestaetigung.**
 
-## Phase 5: Plan dokumentieren
+---
+
+## Teil 3: Plan dokumentieren
 
 Erst NACH Bestaetigung, schreibe nach `.agent/phase/plan.md`:
 
 ```markdown
 # Plan: [Feature-Name]
 
+## Was wird gebaut
+
+**Problem:** [Was wird geloest]
+**Loesung:** [Wie wird es geloest]
+**Nutzer:** [Wer profitiert]
+
 ## User Story
 Als [Nutzer] moechte ich [Aktion], um [Nutzen].
+
+## Anforderungen
+- [ ] [Anforderung 1]
+- [ ] [Anforderung 2]
+- [ ] [Anforderung 3]
 
 ## Technischer Ansatz
 [2-3 Saetze die den gewaehlten Weg beschreiben]
@@ -143,14 +205,23 @@ Als [Nutzer] moechte ich [Aktion], um [Nutzen].
 
 ## Erfolgsmessung
 - [Woran erkennt man dass es funktioniert?]
+
+## Phasen-Ueberblick (falls >6 Tasks)
+| Phase | Tasks | Beschreibung | Status |
+|-------|-------|--------------|--------|
+| Phase 1 | 1-3 | [Beschreibung] | Aktuell |
+| Phase 2 | 4-6 | [Beschreibung] | Offen |
+| Phase 3 | 7-X | [Beschreibung] | Offen |
 ```
 
-Dann: **"Weiter mit `/dev` fuer die Entwicklung."**
+Dann: **"Weiter mit `/dev` fuer die Entwicklung (Phase 1)."**
+
+---
 
 ## Anti-Patterns (NICHT machen)
 
-- Sofort Plan schreiben ohne nachzufragen
-- Technische Entscheidungen treffen ohne Ruecksprache
+- Sofort technisch werden ohne Problem zu verstehen
+- Plan schreiben ohne Ruecksprache
 - Entwickler-Praeferenzen ignorieren
 - Plan dokumentieren ohne 95% Sicherheit
 - Zu /dev wechseln ohne Bestaetigung
@@ -162,7 +233,6 @@ Dann: **"Weiter mit `/dev` fuer die Entwicklung."**
 3. Bevorzuge:
    - Bereits im Projekt vorhandene Packages
    - Gut dokumentierte, aktiv gepflegte Packages
-   - Kostenlose Optionen wenn ausreichend
 
 ## KEIN CODE in dieser Phase
 

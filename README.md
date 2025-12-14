@@ -23,14 +23,13 @@ npm install
 
 ```bash
 # In VS Code mit Claude Extension:
-/setup    # KI fuehrt dich durch die Konfiguration
-/check    # Validiert das Setup
+/setup    # KI fuehrt dich durch die Konfiguration (inkl. Validierung)
 ```
 
 ### 4. Erstes Feature starten
 
 ```bash
-/start    # Neues Feature beginnen
+/plan    # Feature planen und implementieren
 ```
 
 ---
@@ -45,7 +44,6 @@ Nach dem Kopieren des Starter-Kits:
 - [ ] `/setup` ausfuehren (konfiguriert das Projekt interaktiv)
 - [ ] `.env.local` erstellen: `cp .env.example .env.local`
 - [ ] Environment-Variablen in `.env.local` eintragen
-- [ ] `/check` ausfuehren (validiert Setup)
 
 ### Optional (bei Bedarf)
 
@@ -60,13 +58,9 @@ Nach dem Kopieren des Starter-Kits:
 ```
 /setup  →  Einmalig: Projekt konfigurieren
    ↓
-/start  →  Feature-Idee klaeren
+/plan   →  Feature planen (Was + Wie)
    ↓
-/plan   →  Tasks und Stories erstellen
-   ↓
-/dev    →  Implementieren
-   ↓
-/review →  Code pruefen
+/dev    →  Implementieren (+ optionaler Review)
    ↓
 /memory →  Kontext speichern
 ```
@@ -75,18 +69,13 @@ Nach dem Kopieren des Starter-Kits:
 
 | Befehl | Was passiert | Output |
 |--------|--------------|--------|
-| `/setup` | Interaktive Projekt-Konfiguration | Memory-Dateien |
-| `/check` | Setup validieren | Validierungs-Report |
-| `/start` | Gespraech ueber Feature-Idee | `.agent/phase/idee.md` |
-| `/plan` | Strukturierter Plan mit Tasks | `.agent/phase/plan.md` |
-| `/dev` | Code-Implementierung | `.agent/phase/zusammenfassung.md` |
-| `/review` | Qualitaetspruefung | `.agent/phase/review-report.md` |
-| `/status` | Wo bin ich gerade? | Status-Uebersicht |
+| `/setup` | Interaktive Projekt-Konfiguration + Validierung | Memory-Dateien |
+| `/plan` | Requirements + technischer Plan | `.agent/phase/plan.md` |
+| `/dev` | Code-Implementierung + optionaler Review | `.agent/phase/zusammenfassung.md` |
+| `/status` | Wo bin ich gerade? + Cleanup-Option | Status-Uebersicht |
 | `/memory` | Kontext aktualisieren | Memory-Dateien |
-| `/fix` | Bug beheben | - |
-| `/ende` | Phase abschliessen | - |
+| `/bug` | Bug beheben | - |
 | `/idea` | Gedanke im Backlog speichern | `backlog.md` Eintrag |
-| `/issue` | GitHub Issues verwalten | GitHub Issue |
 
 ### Was produziert jeder Command?
 
@@ -94,7 +83,6 @@ Siehe `.agent/examples/` fuer Beispiel-Outputs:
 
 | Command | Beispiel-Output |
 |---------|-----------------|
-| `/start` | `.agent/examples/idee.md` |
 | `/plan` | `.agent/examples/plan.md` |
 | `/dev` | `.agent/examples/zusammenfassung.md` |
 
@@ -144,7 +132,6 @@ dein-projekt/
 │   │   └── stripe.md     # Zahlungen
 │   │
 │   └── examples/         # Beispiel-Outputs
-│       ├── idee.md       # Beispiel von /start
 │       ├── plan.md       # Beispiel von /plan
 │       └── zusammenfassung.md # Beispiel von /dev
 │
@@ -197,7 +184,7 @@ npm run test:ui   # Playwright mit UI
 ## Probleme?
 
 1. Lies `.agent/docs/troubleshooting.md`
-2. Fuehre `/check` aus fuer Diagnose
+2. Fuehre `/status` aus fuer Diagnose
 3. Frage die KI: "Ich habe folgenden Fehler: [Fehlermeldung]"
 
 ---
@@ -217,7 +204,7 @@ Das System ist AI-agnostisch. Zum Wechseln:
 ### Do's
 
 - Fuehre `/setup` einmal am Anfang aus
-- Starte mit `/start` fuer jedes neue Feature
+- Starte mit `/plan` fuer jedes neue Feature
 - Fuehre `/memory` nach Feature-Abschluss aus
 - Halte die Memory-Dateien aktuell
 - Folge der Validierungs-Sequenz in `/dev`
@@ -227,7 +214,6 @@ Das System ist AI-agnostisch. Zum Wechseln:
 - Ueberspringe keine Phasen
 - Implementiere nicht ohne Plan
 - Vergiss nicht `/memory` nach groesseren Aenderungen
-- Committen ohne `/review`
 
 ---
 

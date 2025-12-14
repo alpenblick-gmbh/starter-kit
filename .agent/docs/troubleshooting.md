@@ -82,12 +82,12 @@ kill -9 <PID>  # Beende ihn
 
 ## Workflow-Probleme
 
-### "/start" macht nichts
+### "/plan" macht nichts
 
 **Problem:** Command wird nicht erkannt
 
 **Loesung:**
-1. Pruefe ob `.claude/commands/start.md` existiert
+1. Pruefe ob `.claude/commands/plan.md` existiert
 2. Starte VS Code neu
 3. Pruefe Claude Extension ist aktiv
 

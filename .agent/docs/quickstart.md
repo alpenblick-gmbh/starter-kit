@@ -32,6 +32,8 @@ Die KI fragt dich nach:
 - Kurzbeschreibung
 - Tech-Stack Praeferenzen
 
+Das Setup beinhaltet automatisch eine Validierung.
+
 ## Schritt 4: Environment einrichten (1 Min)
 
 ```bash
@@ -42,18 +44,10 @@ Oeffne `.env.local` und fuege deine Keys ein:
 - Supabase: URL + Anon Key (aus Supabase Dashboard)
 - Stripe: Secret Key (aus Stripe Dashboard)
 
-## Schritt 5: Validieren (30 Sek)
+## Schritt 5: Erstes Feature starten
 
 ```
-/check
-```
-
-Wenn alles gruen ist: Fertig!
-
-## Schritt 6: Erstes Feature starten
-
-```
-/start
+/plan
 ```
 
 ---
@@ -61,13 +55,9 @@ Wenn alles gruen ist: Fertig!
 ## Der Workflow im Ueberblick
 
 ```
-/start  →  "Was soll gebaut werden?"
+/plan   →  "Was soll gebaut werden? Wie bauen wir es?"
    ↓
-/plan   →  "Wie bauen wir es?"
-   ↓
-/dev    →  Implementierung
-   ↓
-/review →  Qualitaetspruefung
+/dev    →  Implementierung (+ optionaler Review)
    ↓
 /memory →  Wissen speichern
 ```
@@ -76,8 +66,9 @@ Wenn alles gruen ist: Fertig!
 
 | Command | Wann nutzen |
 |---------|-------------|
-| `/status` | Wo bin ich gerade? |
-| `/fix` | Bug beheben |
+| `/status` | Wo bin ich gerade? + Cleanup |
+| `/bug` | Bug beheben |
+| `/idea` | Gedanke festhalten |
 | `/memory` | Nach Feature-Abschluss |
 
 ## Naechste Schritte

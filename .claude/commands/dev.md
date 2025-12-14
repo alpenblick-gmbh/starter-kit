@@ -14,18 +14,30 @@ description: Feature entwickeln - Implementiere Tasks mit Validierung
 
 **WICHTIG:** Auch hier gilt Input-First. Der Entwickler hat vielleicht Aenderungen oder Ergaenzungen.
 
+## Task-Limit
+
+**Maximal 5-6 Tasks pro /dev Session.**
+
+Falls der Plan mehr Tasks hat, arbeite nur die aktuelle Phase ab.
+
 ## Phase 1: Plan pruefen und nachfragen
 
 ### Wenn plan.md existiert:
 
 ```
 "Ich habe den Plan gelesen:
-[Feature-Name] mit [Anzahl] Tasks
+[Feature-Name] mit [Anzahl] Tasks [in Phase X von Y]
 
 Bevor ich loslege:
 - Soll ich genau so vorgehen?
 - Gibt es Aenderungen oder Prioritaeten?
 - Soll ich mit einem bestimmten Task starten?"
+```
+
+Falls >6 Tasks im Plan:
+```
+"Der Plan hat [X] Tasks - ich werde Phase 1 ([Y] Tasks) bearbeiten.
+Nach Abschluss koennen wir mit Phase 2 weitermachen."
 ```
 
 ### Wenn keine plan.md:
@@ -162,7 +174,59 @@ Schreibe nach `.agent/phase/zusammenfassung.md`:
 - [ ] [Vorschlag 2]
 ```
 
-Dann: **"Weiter mit `/review` fuer Code Review oder `/memory` zum Aktualisieren."**
+### Optionaler Review
+
+Nach der Zusammenfassung:
+
+```
+"Soll ich einen kurzen Code-Review machen?
+(Security, Performance, Best Practices)
+
+[ja/nein]"
+```
+
+Bei "ja", pruefe:
+
+| Kategorie | Pruefpunkte |
+|-----------|-------------|
+| **Security** | SQL Injection, XSS, Input-Validierung, keine Hardcoded Secrets |
+| **Performance** | Keine N+1 Queries, keine Memory Leaks, effiziente Algorithmen |
+| **Best Practices** | TypeScript strict, kein `any`, Error Handling, DRY |
+| **Tests** | E2E-Tests vorhanden, Edge Cases abgedeckt |
+
+Falls Probleme gefunden:
+
+```markdown
+## Review-Ergebnis
+
+| Severity | Beschreibung | Datei |
+|----------|--------------|-------|
+| Hoch | [Problem] | `pfad/datei.ts` |
+| Mittel | [Problem] | `pfad/datei.ts` |
+
+Soll ich die Probleme beheben?
+```
+
+Bei "nein" oder nach Review:
+
+**Falls weitere Phasen offen:**
+```
+"Phase [X] abgeschlossen!
+
+Naechste Phase: [Y] mit [Z] Tasks
+- Task A: [Beschreibung]
+- Task B: [Beschreibung]
+- ...
+
+Optionen:
+1. Weiter mit /dev (naechste Phase)
+2. Erst /memory ausfuehren
+3. Pause machen
+
+Was moechtest du?"
+```
+
+**Falls letzte Phase:** **"Weiter mit `/memory` zum Aktualisieren."**
 
 ## Anti-Patterns (NICHT machen)
 

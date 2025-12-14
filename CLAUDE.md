@@ -13,36 +13,29 @@
 
 ## Workflow
 
-Dieses Projekt nutzt einen **3-Phasen-Workflow**:
+Dieses Projekt nutzt einen **einfachen Workflow**:
 
 ```
 /setup  →  Projekt einrichten (Einmalig am Anfang)
    ↓
-/start  →  Feature entdecken (Was wollen wir bauen?)
-   ↓
-/plan   →  Feature planen (Wie bauen wir es?)
+/plan   →  Feature planen (Was + Wie)
    ↓
 /dev    →  Feature entwickeln (Bauen!)
    ↓
-/review →  Code Review (Qualitaetspruefung)
+/memory →  Kontext aktualisieren
 ```
 
 ### Verfuegbare Commands
 
 | Command | Beschreibung | Wann nutzen |
 |---------|--------------|-------------|
-| `/setup` | Projekt einrichten | Einmalig am Anfang |
-| `/check` | Setup validieren | Nach /setup |
-| `/start` | Neues Feature entdecken | Am Anfang eines Features |
-| `/plan` | Feature planen | Nach /start |
-| `/dev` | Feature implementieren | Nach /plan |
-| `/review` | Code Review | Nach /dev |
-| `/status` | Status anzeigen | Jederzeit |
+| `/setup` | Projekt einrichten + validieren | Einmalig am Anfang |
+| `/plan` | Feature planen (Requirements + Technik) | Am Anfang eines Features |
+| `/dev` | Feature implementieren (+ optionaler Review) | Nach /plan |
 | `/memory` | Memory-Bank aktualisieren | Nach Feature-Abschluss |
-| `/fix` | Bug beheben | Bei Bugs |
-| `/ende` | Phase abschliessen | Am Ende einer Phase |
+| `/status` | Status anzeigen + Cleanup | Jederzeit |
+| `/bug` | Bug beheben | Bei Bugs |
 | `/idea` | Gedanke/Idee festhalten | Jederzeit |
-| `/issue` | GitHub Issues verwalten | Bei Bug-Reports, Features |
 
 ---
 

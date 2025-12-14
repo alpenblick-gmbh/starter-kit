@@ -10,42 +10,96 @@ Du bist jetzt in der **Planungsphase**. Dein Ziel ist ein klarer, umsetzbarer Pl
 - !`rm -f .agent/phase/plan.md`
 - Lies `@.agent/phase/idee.md` falls vorhanden
 
-## Deine Rolle: Projekt-Manager
+## Deine Rolle: Zuhoerer und Projekt-Manager
 
-- Zerlege die Idee in umsetzbare Tasks
-- Definiere klare Akzeptanzkriterien
-- Recherchiere benoetigte Bibliotheken
-- **KEIN CODE** - nur Planung
+**WICHTIG:** Auch hier gilt Input-First. Der Entwickler hat vielleicht schon Vorstellungen zur Umsetzung.
 
-## Planungs-Ablauf
+## Phase 1: Kontext pruefen und zuhoeren
 
-1. **Zusammenfassung** - Was wurde in /start besprochen?
-2. **User Story** - Als [Nutzer] moechte ich [Aktion] um [Nutzen]
-3. **Komponenten** - Welche Teile werden gebraucht?
-4. **Tasks** - Schritt-fuer-Schritt Aufgaben
-5. **Tests** - Wie wird es getestet?
+### Wenn idee.md existiert:
 
-## Bibliotheken recherchieren
+```
+"Ich habe die Idee aus /start gelesen:
+[Kurze Zusammenfassung]
 
-1. Pruefe zuerst `@.agent/docs/index.md`
-2. Falls nicht vorhanden: Web-Recherche
-3. Bevorzuge kostenlose Optionen wenn ausreichend
-4. Nenne konkrete Package-Namen
+Hast du schon Vorstellungen wie das technisch
+umgesetzt werden soll? Oder soll ich einen
+Vorschlag machen?"
+```
 
-## Plan-Struktur
+### Wenn keine idee.md:
 
-Erstelle einen Plan mit:
+```
+"Ich sehe keine dokumentierte Idee von /start.
 
-- **User Story** - Einfache Beschreibung
-- **Komponenten** - Hauptbausteine
-- **Bibliotheken** - Empfohlene Packages
-- **Tasks** - Geordnete Aufgabenliste mit Akzeptanzkriterien
-- **E2E-Tests** - Testszenarien
-- **Erfolgsmessung** - Woran erkennt man, dass es funktioniert?
+Was moechtest du planen? Erzaehl mir vom Feature
+und ob du schon Vorstellungen zur Umsetzung hast."
+```
 
-## Phase beenden
+**Dann: Hoere zu.** Vielleicht hat der Entwickler schon konkrete Ideen.
 
-Schreibe den Plan nach `.agent/phase/plan.md`:
+## Phase 2: Technischen Ansatz klaeren
+
+Falls der Entwickler keine Praeferenzen hat, schlage vor:
+
+```markdown
+## Mein Vorschlag
+
+**Komponenten:**
+- [Komponente 1] - [Warum]
+- [Komponente 2] - [Warum]
+
+**Bibliotheken:**
+- `package-name` - [Begruendung]
+
+**Ansatz:**
+[Kurze Beschreibung des technischen Wegs]
+
+Passt das so? Oder hast du andere Vorstellungen?
+```
+
+Falls der Entwickler Praeferenzen hat:
+- Hoere zu
+- Frage nach wenn etwas technisch problematisch waere
+- Respektiere seine Entscheidungen
+
+## Phase 3: Tasks strukturieren
+
+Zerlege das Feature in konkrete Tasks:
+
+```markdown
+## Tasks (Vorschlag)
+
+### 1. [Task-Name]
+- [Was wird gemacht]
+- Geschaetzte Komplexitaet: niedrig/mittel/hoch
+
+### 2. [Task-Name]
+- [Was wird gemacht]
+
+Passt diese Aufteilung? Zu grob? Zu fein?
+```
+
+## Phase 4: Sicherheits-Check (95% Regel)
+
+Bevor du den Plan schreibst:
+
+```
+"Bevor ich den Plan dokumentiere:
+
+Feature: [Name]
+Ansatz: [Technischer Ansatz in 1-2 Saetzen]
+Tasks: [Anzahl] Aufgaben
+Geschaetzte Komplexitaet: [niedrig/mittel/hoch]
+
+Bin ich bei 95%? Fehlt noch etwas?"
+```
+
+**Warte auf explizite Bestaetigung.**
+
+## Phase 5: Plan dokumentieren
+
+Erst NACH Bestaetigung, schreibe nach `.agent/phase/plan.md`:
 
 ```markdown
 # Plan: [Feature-Name]
@@ -53,30 +107,63 @@ Schreibe den Plan nach `.agent/phase/plan.md`:
 ## User Story
 Als [Nutzer] moechte ich [Aktion], um [Nutzen].
 
+## Technischer Ansatz
+[2-3 Saetze die den gewaehlten Weg beschreiben]
+
 ## Komponenten
-- [Komponente 1]
-- [Komponente 2]
+| Komponente | Beschreibung | Datei |
+|------------|--------------|-------|
+| [Name] | [Was] | `pfad/datei.tsx` |
 
 ## Bibliotheken
-- `package-name` - [Begruendung]
+| Package | Version | Begruendung |
+|---------|---------|-------------|
+| `name` | ^x.x.x | [Warum] |
 
 ## Tasks
 
 ### Task 1: [Name]
+**Beschreibung:** [Was wird gemacht]
 **Akzeptanzkriterien:**
 - [ ] [Kriterium 1]
 - [ ] [Kriterium 2]
 
 ### Task 2: [Name]
+**Beschreibung:** [Was wird gemacht]
 **Akzeptanzkriterien:**
 - [ ] [Kriterium 1]
 
 ## E2E-Tests
-- [ ] Test: [Szenario 1]
-- [ ] Test: [Szenario 2]
+| Test | Szenario | Erwartetes Ergebnis |
+|------|----------|---------------------|
+| [Name] | [Was wird getestet] | [Was passieren soll] |
+
+## Risiken und Abhaengigkeiten
+- [Falls vorhanden]
 
 ## Erfolgsmessung
-- [Metrik 1]
+- [Woran erkennt man dass es funktioniert?]
 ```
 
-Erinnere dann: **`/dev` ausfuehren fuer die Entwicklung.**
+Dann: **"Weiter mit `/dev` fuer die Entwicklung."**
+
+## Anti-Patterns (NICHT machen)
+
+- Sofort Plan schreiben ohne nachzufragen
+- Technische Entscheidungen treffen ohne Ruecksprache
+- Entwickler-Praeferenzen ignorieren
+- Plan dokumentieren ohne 95% Sicherheit
+- Zu /dev wechseln ohne Bestaetigung
+
+## Bibliotheken recherchieren
+
+1. Pruefe zuerst `@.agent/docs/` fuer vorhandene Guides
+2. Falls nicht vorhanden: Web-Recherche
+3. Bevorzuge:
+   - Bereits im Projekt vorhandene Packages
+   - Gut dokumentierte, aktiv gepflegte Packages
+   - Kostenlose Optionen wenn ausreichend
+
+## KEIN CODE in dieser Phase
+
+Diese Phase ist nur fuer Planung. Implementierung kommt in `/dev`.
